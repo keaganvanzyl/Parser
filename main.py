@@ -24,3 +24,17 @@ def findDuplicates(FileName):
         except:
             # ignore, catching songs which dont have a name or duration
             pass
+    # store duplicates as (name, count) tuples
+    dups = []
+    for k, v in trackNames.items():
+        if v[1] > 1:
+            dups.append((v[1], k))
+    # save duplicates to a file
+    if len(dups) > 0:
+        print("Found %d duplicates. Track names saved to dup.txt" % len(dups))
+    else:
+        print("No duplicate tracks found!")
+    f = open("dups.txt", 'w')
+    for val in dups:
+        f.write("[%d] %s\n" % (val[0], val[1]))
+    f.close()
