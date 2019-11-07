@@ -1,4 +1,8 @@
-import np
+import re, argparse
+import sys
+from matplotlib import pyplot
+import plistlib
+import numpy as np
 
 
 def findDuplicates(FileName):
@@ -76,7 +80,6 @@ def findCommonTracks(Filenames):
     else:
         print("No common tracks")
 
-
 def plotStats(fileName):
     # read in a playlist
     plist = plistlib.readPlist(fileName)
@@ -119,7 +122,6 @@ def plotStats(fileName):
     # show plot
     pyplot.show()
 
-
 def main():
     # create parser
     descStr = """ This program analyses playlist files (.xml) exported from iTunes.
@@ -147,3 +149,7 @@ def main():
         findDuplicates(args.plFileD)
     else:
         print("These are not the tracks you are looking for.")
+
+# main method
+if __name__ == '__main__':
+    main()
