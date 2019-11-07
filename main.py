@@ -95,3 +95,23 @@ def plotStats(fileName):
     if ratings == [] or durations == []:
         print("No valid Album Rating/Total Time data in %s." % fileName)
         return
+
+    # scatter plot
+    x = np.array(durations, np.int32)
+    # convert to minutes
+    x = x/60000.0
+    y = np.array(ratings, np.int32)
+    pyplot.subplot(2,1,1)
+    pyplot.plot(x,y, 'o')
+    pyplot.axis([0, 1.05* np.max(x), -1, 110])
+    pyplot.xlabel('Track duration')
+    pyplot.ylabel('Track rating')
+
+    # plot historgram
+    pyplot.subplot(2,1,2)
+    pyplot.hist(x, bins=20)
+    pyplot.xlabel('Track duration')
+    pyplot.ylabel('Count')
+
+    # show plot
+    pyplot.show()
